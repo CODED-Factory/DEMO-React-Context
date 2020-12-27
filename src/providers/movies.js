@@ -26,7 +26,7 @@ export function useMovies() {
   return { allMovies, setMovies };
 }
 
-export function MoviesProvider({ children, value }) {
+export function MoviesProvider({ children }) {
   const moviesState = useState(_movies);
   return (
     <MoviesContext.Provider value={moviesState}>
