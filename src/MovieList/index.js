@@ -2,26 +2,12 @@ import { useState } from "react";
 import MovieRow from "./MovieRow";
 import SearchBar from "./SearchBar";
 
-const allMovies = [
-  {
-    title: "Spider-lad",
-    watched: true,
-  },
-  {
-    title: "Bu Waleed Goes on an Adventure",
-    watched: true,
-  },
-  {
-    title: "Taken",
-    watched: false,
-  },
-  {
-    title: "Star Wars",
-    watched: true,
-  },
-];
-
-export default function MovieList({ watched }) {
+export default function MovieList({
+  allMovies,
+  watched,
+  toggleMovie,
+  deleteMovie,
+}) {
   const [query, setQuery] = useState("");
 
   const movies = allMovies.filter((movie) => movie.watched === !!watched);
@@ -31,7 +17,12 @@ export default function MovieList({ watched }) {
   );
 
   const movieRows = filteredMovies.map((movie, idx) => (
-    <MovieRow key={movie.title + idx} movie={movie} />
+    <MovieRow
+      key={movie.title + idx}
+      movie={movie}
+      toggleMovie={toggleMovie}
+      deleteMovie={deleteMovie}
+    />
   ));
 
   return (

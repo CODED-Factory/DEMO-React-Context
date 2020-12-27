@@ -1,4 +1,4 @@
-export default function MovieRow({ movie }) {
+export default function MovieRow({ movie, toggleMovie, deleteMovie }) {
   return (
     <li className="list-group-item">
       <div className="row">
@@ -6,13 +6,13 @@ export default function MovieRow({ movie }) {
         <div className="col-5">
           <button
             className="btn btn-info mx-1"
-            onClick={() => alert(`Toggle ${movie.title} watched`)}
+            onClick={() => toggleMovie(movie)}
           >
             {movie.watched ? "Unwatch" : "Watched"}
           </button>
           <button
             className="btn btn-danger mx-1"
-            onClick={() => alert(`Delete ${movie.title}`)}
+            onClick={() => deleteMovie(movie)}
           >
             Delete
           </button>

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export default function AddMovie() {
+export default function AddMovie({ addMovie }) {
   const [title, setTitle] = useState("");
 
   const submitMovie = (e) => {
     e.preventDefault();
-    if (title) alert(`Add ${title}`);
+    if (title) addMovie(title);
     setTitle("");
   };
 
