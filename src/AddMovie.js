@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useMovies } from "./providers/movies";
 
-export default function AddMovie({ addMovie }) {
+export default function AddMovie() {
   const [title, setTitle] = useState("");
+  const { movies, setMovies } = useMovies();
+
+  const addMovie = (title) => setMovies([...movies, { title, watched: false }]);
 
   const submitMovie = (e) => {
     e.preventDefault();

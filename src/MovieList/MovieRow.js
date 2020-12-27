@@ -1,4 +1,18 @@
-export default function MovieRow({ movie, toggleMovie, deleteMovie }) {
+import { useMovies } from "../providers/movies";
+
+export default function MovieRow({ movie }) {
+  const { movies, setMovies } = useMovies();
+
+  const toggleMovie = (movieToToggle) =>
+    setMovies(
+      movies.map((movie) =>
+        movie !== movieToToggle ? movie : { ...movie, watched: !movie.watched }
+      )
+    );
+
+  const deleteMovie = (movieToDelete) =>
+    setMovies(movies.filter((movie) => movie !== movieToDelete));
+
   return (
     <li className="list-group-item">
       <div className="row">
