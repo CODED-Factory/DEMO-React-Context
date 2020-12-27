@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddMovie from "./AddMovie";
 import MovieList from "./MovieList";
+import MoviesContext from "./providers/movies";
 
 const _movies = [
   {
@@ -37,22 +38,19 @@ function App() {
     setMovies(movies.filter((movie) => movie !== movieToDelete));
 
   return (
-    <div className="container">
-      <AddMovie addMovie={addMovie} />
-      <div className="row">
-        <MovieList
-          allMovies={movies}
-          toggleMovie={toggleMovie}
-          deleteMovie={deleteMovie}
-        />
-        <MovieList
-          allMovies={movies}
-          toggleMovie={toggleMovie}
-          deleteMovie={deleteMovie}
-          watched
-        />
+    <MoviesContext.Provider value={movies}>
+      <div className="container">
+        <AddMovie addMovie={addMovie} />
+        <div className="row">
+          <MovieList toggleMovie={toggleMovie} deleteMovie={deleteMovie} />
+          <MovieList
+            toggleMovie={toggleMovie}
+            deleteMovie={deleteMovie}
+            watched
+          />
+        </div>
       </div>
-    </div>
+    </MoviesContext.Provider>
   );
 }
 

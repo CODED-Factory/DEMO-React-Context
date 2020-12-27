@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import MoviesContext from "../providers/movies";
 import MovieRow from "./MovieRow";
 import SearchBar from "./SearchBar";
 
-export default function MovieList({
-  allMovies,
-  watched,
-  toggleMovie,
-  deleteMovie,
-}) {
+export default function MovieList({ watched, toggleMovie, deleteMovie }) {
+  const allMovies = useContext(MoviesContext);
   const [query, setQuery] = useState("");
 
   const movies = allMovies.filter((movie) => movie.watched === !!watched);
