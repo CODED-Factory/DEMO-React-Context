@@ -3,10 +3,7 @@ import { useMovies } from "./providers/movies";
 
 export default function AddMovie() {
   const [title, setTitle] = useState("");
-  const { allMovies, setMovies } = useMovies();
-
-  const addMovie = (title) =>
-    setMovies([...allMovies, { title, watched: false }]);
+  const { addMovie } = useMovies();
 
   const submitMovie = (e) => {
     e.preventDefault();

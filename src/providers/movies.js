@@ -21,9 +21,32 @@ const _movies = [
   },
 ];
 
-export function useMovies() {
+export function useMovies(watched) {
   const [allMovies, setMovies] = useContext(MoviesContext);
-  return { allMovies, setMovies };
+
+  const watchedMovies = allMovies.filter((movie) => movie.watched);
+  const unwatchedMovies = allMovies.filter((movie) => !movie.watched);
+
+  const addMovie = (title) =>
+    setMovies([...allMovies, { title, watched: false }]);
+
+  const toggleMovie = (movieToToggle) =>
+    setMovies(
+      allMovies.map((movie) =>
+        movie !== movieToToggle ? movie : { ...movie, watched: !movie.watched }
+      )
+    );
+
+  const deleteMovie = (movieToDelete) =>
+    setMovies(allMovies.filter((movie) => movie !== movieToDelete));
+
+  return {
+    addMovie,
+    movies: watched ? watchedMovies : unwatchedMovies,
+    deleteMovie,
+    setMovies,
+    toggleMovie,
+  };
 }
 
 export function MoviesProvider({ children }) {

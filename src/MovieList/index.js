@@ -4,10 +4,8 @@ import MovieRow from "./MovieRow";
 import SearchBar from "./SearchBar";
 
 export default function MovieList({ watched }) {
-  const { allMovies } = useMovies();
+  const { movies } = useMovies(watched);
   const [query, setQuery] = useState("");
-
-  const movies = allMovies.filter((movie) => movie.watched === !!watched);
 
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(query.toLowerCase())
