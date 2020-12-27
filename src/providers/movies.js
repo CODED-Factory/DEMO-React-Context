@@ -22,8 +22,8 @@ const _movies = [
 ];
 
 export function useMovies() {
-  const [movies, setMovies] = useContext(MoviesContext);
-  return { movies, setMovies };
+  const [allMovies, setMovies] = useContext(MoviesContext);
+  return { allMovies, setMovies };
 }
 
 export function MoviesProvider({ children, value }) {

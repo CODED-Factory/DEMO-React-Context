@@ -1,17 +1,17 @@
 import { useMovies } from "../providers/movies";
 
 export default function MovieRow({ movie }) {
-  const { movies, setMovies } = useMovies();
+  const { allMovies, setMovies } = useMovies();
 
   const toggleMovie = (movieToToggle) =>
     setMovies(
-      movies.map((movie) =>
+      allMovies.map((movie) =>
         movie !== movieToToggle ? movie : { ...movie, watched: !movie.watched }
       )
     );
 
   const deleteMovie = (movieToDelete) =>
-    setMovies(movies.filter((movie) => movie !== movieToDelete));
+    setMovies(allMovies.filter((movie) => movie !== movieToDelete));
 
   return (
     <li className="list-group-item">

@@ -4,7 +4,7 @@ import MovieRow from "./MovieRow";
 import SearchBar from "./SearchBar";
 
 export default function MovieList({ watched }) {
-  const { movies: allMovies } = useMovies();
+  const { allMovies } = useMovies();
   const [query, setQuery] = useState("");
 
   const movies = allMovies.filter((movie) => movie.watched === !!watched);
@@ -18,7 +18,7 @@ export default function MovieList({ watched }) {
   ));
 
   return (
-    <div className="col-6">
+    <div className="col-md-6 col-12">
       <div className="my-4">
         <h3>
           {watched ? "Watched" : "Watchlist"}
